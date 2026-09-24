@@ -4,7 +4,7 @@
 
 分支策略:
     - 默认: testing
-    - prismax-python / prismax-marketing-rp: main
+    - prismax-python: main
 
 用法:
     python3 daily_pull_branches.py

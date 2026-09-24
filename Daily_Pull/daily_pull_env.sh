@@ -4,7 +4,7 @@
 # 用于cron任务中设置环境变量
 #
 # 使用方法:
-#   source /Users/wanxin/PycharmProjects/WORK/Prismax/QA_PrismaX/Daily_Pull/daily_pull_env.sh
+#   source /Users/wanxin/PycharmProjects/WORK/Prismax/0_QA_PrismaX/Daily_Pull/daily_pull_env.sh
 #
 
 # SMTP服务器配置

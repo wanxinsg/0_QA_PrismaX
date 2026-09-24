@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# 每日拉取多个仓库分支并发送邮件报告（默认 testing，prismax-python / prismax-marketing-rp 使用 main）
+# 每日拉取多个仓库分支并发送邮件报告（全部跟踪 testing）
 #
 # 用法:
 #   ./daily_pull_branches.sh
@@ -13,7 +13,7 @@
 #   export SMTP_PASS=your_password
 #   export EMAIL_FROM=your_email@example.com
 #   export EMAIL_TO=wanxin@solidcap.io
-#   export EMAIL_SUBJECT="Prismax 每日拉取报告（默认 testing，prismax-python 为 main）"
+#   export EMAIL_SUBJECT="Prismax 每日拉取报告（testing）"
 #   export PROJECT_ROOT=/path/to/Prismax
 #
 

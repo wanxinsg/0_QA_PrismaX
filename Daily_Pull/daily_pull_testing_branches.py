@@ -38,11 +38,10 @@ REPOSITORIES = [
     "prismax-marketing-rp",
 ]
 
-# 分支策略：默认 testing，个别仓库可覆盖
+# 分支策略：默认跟踪远端 testing；个别仓库例外
 DEFAULT_TARGET_BRANCH = "testing"
-REPO_TARGET_BRANCHES = {
+REPO_TARGET_BRANCHES: Dict[str, str] = {
     "prismax-python": "main",
-    "prismax-marketing-rp": "main",
 }
 
 
@@ -77,7 +76,7 @@ def get_project_root() -> Path:
         return Path(project_root)
     
     # 默认：脚本在 Daily_Pull/ 目录下，需要向上两级到达项目根目录
-    # Daily_Pull/ -> QA_PrismaX/ -> Prismax/
+    # Daily_Pull/ -> 0_QA_PrismaX/ -> Prismax/
     script_dir = Path(__file__).parent.absolute()
     return script_dir.parent.parent
 
@@ -108,7 +107,7 @@ def run_git_command(
 
 
 def pull_testing_branch(repo_name: str, repo_path: Path) -> GitPullResult:
-    """按仓库策略拉取指定分支（默认 testing，prismax-python / prismax-marketing-rp 为 main）"""
+    """拉取指定仓库的目标分支（默认 testing）"""
     result = GitPullResult(repo_name, str(repo_path))
     target_branch = REPO_TARGET_BRANCHES.get(repo_name, DEFAULT_TARGET_BRANCH)
     
@@ -263,7 +262,7 @@ def send_email_report(results: List[GitPullResult]):
             <div class="summary">
                 <p><strong>执行时间:</strong> {now}</p>
                 <p><strong>总计:</strong> {len(results)} 个仓库</p>
-                <p><strong>分支策略:</strong> 默认 testing，prismax-python / prismax-marketing-rp 使用 main</p>
+                <p><strong>分支策略:</strong> 默认跟踪 testing；prismax-python 跟踪 main</p>
                 <p><strong>成功:</strong> <span style="color: #27ae60;">{sum(1 for r in results if r.success)}</span></p>
                 <p><strong>失败:</strong> <span style="color: #e74c3c;">{sum(1 for r in results if not r.success)}</span></p>
             </div>

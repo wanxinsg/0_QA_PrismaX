@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Prismax Git Pull Automation Script (Kira-compatible mechanism)
-# - Pull multiple repos' target branch (default testing, prismax-python / prismax-marketing-rp -> main)
+# - Pull repos (default testing; prismax-python tracks main)
 # - Send unified HTML email report (same template/subject strategy as Kira)
 # - Stamp to avoid double-run in same day
 #
@@ -9,12 +9,13 @@
 set -u
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+QA_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 PRISMAX_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 LAST_PULL_DATE_FILE="$SCRIPT_DIR/.last_pull_date"
 LOCK_DIR="$SCRIPT_DIR/.pull_repos.lock"
 
 # Where to write "email sent at" stamp for Regression gating
-SENT_AT_FILE="$PRISMAX_ROOT/QA_PrismaX/Daily_Regression_Test/tele_op_services/.daily_pull_sent_at"
+SENT_AT_FILE="$QA_ROOT/Daily_Regression_Test/tele_op_services/.daily_pull_sent_at"
 
 TODAY="$(date '+%Y-%m-%d')"
 # Idempotency: if already completed today, exit (avoid double emails from multiple schedulers)
@@ -60,6 +61,14 @@ REPOS=(
 
 DEFAULT_TARGET_BRANCH="testing"
 
+# 个别仓库不跟踪 testing
+target_branch_for() {
+    case "$1" in
+        prismax-python) echo "main" ;;
+        *) echo "$DEFAULT_TARGET_BRANCH" ;;
+    esac
+}
+
 # Function to log messages
 log_message() {
     local message="$1"
@@ -90,10 +99,7 @@ log_message "=========================================="
 
 for repo in "${REPOS[@]}"; do
     REPO_PATH="$PRISMAX_ROOT/$repo"
-    TARGET_BRANCH="$DEFAULT_TARGET_BRANCH"
-    if [ "$repo" = "prismax-python" ] || [ "$repo" = "prismax-marketing-rp" ]; then
-        TARGET_BRANCH="main"
-    fi
+    TARGET_BRANCH="$(target_branch_for "$repo")"
 
     log_message ""
     log_message "Processing: $repo"
@@ -149,7 +155,7 @@ for repo in "${REPOS[@]}"; do
         git stash save "Auto-stash before pull on $(date '+%Y-%m-%d %H:%M:%S')" > /dev/null 2>&1
     fi
 
-    # Ensure on testing branch
+    # Ensure on the target branch
     if [ "$CURRENT_BRANCH" != "$TARGET_BRANCH" ]; then
         log_message "Switching to $TARGET_BRANCH..."
         git checkout "$TARGET_BRANCH" > /dev/null 2>&1 || \
@@ -242,7 +248,7 @@ EMAIL_BODY=$(cat << MAILBODY
         <div class="summary">
             <p><strong>执行时间:</strong> $NOW_STR</p>
             <p><strong>总计:</strong> ${#REPOS[@]} 个仓库</p>
-            <p><strong>分支策略:</strong> 默认 testing，prismax-python / prismax-marketing-rp 使用 main</p>
+            <p><strong>分支策略:</strong> 默认跟踪 testing；prismax-python 跟踪 main</p>
             <p><strong>成功:</strong> <span style="color: #27ae60;">$SUCCESS_COUNT</span></p>
             <p><strong>失败:</strong> <span style="color: #e74c3c;">$FAILURE_COUNT</span></p>
             <p><strong>跳过:</strong> <span style="color: #f39c12;">$SKIP_COUNT</span></p>

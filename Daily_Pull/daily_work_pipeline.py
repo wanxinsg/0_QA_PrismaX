@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-工作日 Daily Work：拉取各仓库分支并发邮件（默认 testing，prismax-python / prismax-marketing-rp 使用 main）。
+工作日 Daily Work：拉取各仓库目标分支并发邮件。
 
 用法:
     python3 daily_work_pipeline.py
