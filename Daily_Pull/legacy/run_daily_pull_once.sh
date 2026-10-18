@@ -6,9 +6,10 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DAILY_PULL_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 STATE_FILE="${SCRIPT_DIR}/.last_run_date"
-ENV_FILE="${SCRIPT_DIR}/daily_pull_env.sh"
-ENV_LOCAL="${SCRIPT_DIR}/daily_pull_env.local.sh"
+ENV_FILE="${DAILY_PULL_DIR}/daily_pull_env.sh"
+ENV_LOCAL="${DAILY_PULL_DIR}/daily_pull_env.local.sh"
 PYTHON_SCRIPT="${SCRIPT_DIR}/daily_work_pipeline.py"
 LOG_FILE="${SCRIPT_DIR}/daily_pull.log"
 PAUSE_FROM_FILE="${SCRIPT_DIR}/.daily_work_pause_from"

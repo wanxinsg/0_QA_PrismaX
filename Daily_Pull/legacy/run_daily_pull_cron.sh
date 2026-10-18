@@ -7,9 +7,10 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/daily_pull_env.sh"
-if [[ -f "${SCRIPT_DIR}/daily_pull_env.local.sh" ]]; then
+DAILY_PULL_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+source "${DAILY_PULL_DIR}/daily_pull_env.sh"
+if [[ -f "${DAILY_PULL_DIR}/daily_pull_env.local.sh" ]]; then
     # shellcheck source=/dev/null
-    source "${SCRIPT_DIR}/daily_pull_env.local.sh"
+    source "${DAILY_PULL_DIR}/daily_pull_env.local.sh"
 fi
 exec "${SCRIPT_DIR}/run_daily_pull_once.sh"

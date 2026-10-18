@@ -1,4 +1,40 @@
+# Blog 发布流程
+
+## 快速命令
+
+### 将 testing 分支发布到 main 分支
+
+```bash
 # 获取最新代码
+git fetch origin
+git switch main
+git pull --ff-only origin main
+
+# 创建并推送备份分支
+backup_branch="backup/main-$(date +%Y%m%d-%H%M%S)"
+git branch "$backup_branch"
+git push origin "$backup_branch"
+
+# 合并 testing，保留独立合并提交，方便回滚
+git merge --no-ff origin/testing -m "Release testing to main"
+
+# 合并成功后推送
+git push origin main
+```
+
+### 将改动提交到 testing 分支
+
+```bash
+git status
+git diff
+git add blog/article.html
+git commit -m "Fix the mobile contact-sales link on article pages."
+git push origin testing
+```
+
+## 将 testing 分支发布到 main 分支
+
+### 1. 获取最新代码
 
 ```bash
 git fetch origin
@@ -26,7 +62,7 @@ git pull --ff-only origin main
 - **`origin`**：要拉取的远程仓库。
 - **`main`**：要拉取的远程分支。
 
-# 创建并推送备份分支
+### 2. 创建并推送备份分支
 
 ```bash
 backup_branch="backup/main-$(date +%Y%m%d-%H%M%S)"
@@ -54,7 +90,7 @@ git push origin "$backup_branch"
 - **`origin`**：接收备份分支的远程仓库。
 - **`"$backup_branch"`**：要推送的本地分支名。在远程未指定其他名称时，会创建同名远程分支。
 
-# 合并 testing，保留独立合并提交，方便回滚
+### 3. 合并 testing，保留独立合并提交，方便回滚
 
 ```bash
 git merge --no-ff origin/testing -m "Release testing to main"
@@ -66,7 +102,7 @@ git merge --no-ff origin/testing -m "Release testing to main"
 - **`origin/testing`**：上一步 `git fetch origin` 更新的远程 `testing` 跟踪分支。
 - **`-m "Release testing to main"`**：直接指定合并提交的 commit message，避免 Git 打开交互式编辑器。
 
-# 合并成功后推送
+### 4. 合并成功后推送
 
 ```bash
 git push origin main
@@ -77,11 +113,11 @@ git push origin main
 - **`origin`**：目标远程仓库。
 - **`main`**：要推送的本地分支。默认情况下它会更新同名的远程 `main` 分支。
 
-# 回滚已发布的 testing 合并
+## 回滚已发布的 testing 合并
 
 如果合并到 `main` 并推送后发现问题，推荐通过 `git revert` 生成新的回滚提交。这种方式保留完整历史，不会改写共享 `main` 的提交记录。
 
-## 1. 同步最新 main
+### 1. 同步最新 main
 
 ```bash
 git fetch origin
@@ -94,7 +130,7 @@ git pull --ff-only origin main
 - **`git switch main`**：切换到本地 `main` 分支。
 - **`git pull --ff-only origin main`**：只允许以快进方式用 `origin/main` 更新本地 `main`；如果两者已分叉则拒绝执行。
 
-## 2. 查找要回滚的发布合并提交
+### 2. 查找要回滚的发布合并提交
 
 ```bash
 git log --merges --oneline origin/main
@@ -116,7 +152,7 @@ merge_commit="<merge_commit_sha>"
 - **`<merge_commit_sha>`**：需要替换为上一步查到的真实 SHA，例如 `abc1234`。
 - 这是 Shell 变量赋值，不是 Git 命令。
 
-## 3. 生成回滚提交
+### 3. 生成回滚提交
 
 ```bash
 git revert -m 1 "$merge_commit"
@@ -129,7 +165,7 @@ git revert -m 1 "$merge_commit"
 
 Git 通常会打开编辑器显示默认回滚信息；保存并退出编辑器后即会创建回滚提交。
 
-## 4. 如果回滚时出现冲突
+### 4. 如果回滚时出现冲突
 
 先查看冲突文件：
 
@@ -170,7 +206,7 @@ git revert --abort
 
 > `git revert --continue` 和 `git revert --abort` 二选一：解决冲突后继续，或取消整个回滚操作。
 
-## 5. 检查并推送回滚提交
+### 5. 检查并推送回滚提交
 
 ```bash
 git show --stat --oneline HEAD

@@ -6,11 +6,10 @@
     <string>com.prismax.gitpull.catchup</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/bash</string>
-        <string>-l</string>
-        <string>-c</string>
-        <string>__DAILY_PULL_DIR__/run_pull_if_needed.sh</string>
+        <string>__DAILY_PULL_DIR__/prismax-daily-pull-catchup</string>
     </array>
+    <key>WorkingDirectory</key>
+    <string>__DAILY_PULL_DIR__</string>
     <key>RunAtLoad</key>
     <true/>
     <key>StartCalendarInterval</key>
@@ -22,7 +21,5 @@
     <string>__DAILY_PULL_DIR__/log/catchup_stdout.log</string>
     <key>StandardErrorPath</key>
     <string>__DAILY_PULL_DIR__/log/catchup_stderr.log</string>
-    <key>WorkingDirectory</key>
-    <string>__DAILY_PULL_DIR__</string>
 </dict>
 </plist>

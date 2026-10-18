@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Daily Pull 环境变量配置文件
-# 用于cron任务中设置环境变量
+# 由 prismax-daily-pull / prismax-daily-pull-catchup 加载
 #
 # 使用方法:
 #   source /Users/wanxin/PycharmProjects/WORK/Prismax/0_QA_PrismaX/Daily_Pull/daily_pull_env.sh

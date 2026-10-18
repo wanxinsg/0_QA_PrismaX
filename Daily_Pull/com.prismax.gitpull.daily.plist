@@ -6,14 +6,10 @@
     <string>com.prismax.gitpull.daily</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/bash</string>
-        <string>-l</string>
-        <string>-c</string>
-        <string>__DAILY_PULL_DIR__/pull_repos.sh</string>
+        <string>__DAILY_PULL_DIR__/prismax-daily-pull</string>
     </array>
     <key>WorkingDirectory</key>
     <string>__DAILY_PULL_DIR__</string>
-    <!-- 每天 09:00 主触发 -->
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key><integer>9</integer>

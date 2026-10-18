@@ -1,0 +1,7 @@
+#!/bin/bash
+# PrismaX Daily Pull
+# 每天 09:00 拉取仓库并发送邮件。
+# 系统设置 → 登录项与扩展 里，这项的名字是 prismax-daily-pull。
+set -u
+DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$DIR/pull_repos.sh"

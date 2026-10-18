@@ -18,7 +18,8 @@ set -euo pipefail
 
 # 获取脚本所在目录
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="${SCRIPT_DIR}/daily_pull_env.sh"
+DAILY_PULL_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+ENV_FILE="${DAILY_PULL_DIR}/daily_pull_env.sh"
 WRAPPER_SCRIPT="${SCRIPT_DIR}/run_daily_pull_once.sh"
 LOG_FILE="${SCRIPT_DIR}/daily_pull.log"
 

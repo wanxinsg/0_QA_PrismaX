@@ -13,7 +13,7 @@ if [[ -f "$SCRIPT_DIR/.tele_op_cron_env" ]]; then
 fi
 
 # 2) 若未设置 SMTP 凭证，尝试从 Daily_Pull 的环境文件加载（与 Daily Pull 共用一套 SMTP）
-DAILY_PULL_ENV="/Users/wanxin/PycharmProjects/WORK/Prismax/QA_PrismaX/Daily_Pull/daily_pull_env.sh"
+DAILY_PULL_ENV="$(cd "$SCRIPT_DIR/../../Daily_Pull" && pwd)/daily_pull_env.sh"
 if [[ -f "$DAILY_PULL_ENV" ]]; then
   source "$DAILY_PULL_ENV"
 fi
