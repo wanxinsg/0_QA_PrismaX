@@ -236,10 +236,10 @@ def main():
     主函数
     """
     # MCAP 文件路径
-    mcap_path = "/Prismax/QA_PrismaX/QA_Feature_CaseDesign/3_Mcap Data/output-20260129/0.mcap"
+    mcap_path = "/Users/wanxin/PycharmProjects/WORK/Prismax/_local_data/qa_prismax/mcap_output/output-20260129/0.mcap"
     
     # 输出 MD 文件路径
-    output_md_path = "/Users/wanxin/PycharmProjects/WORK/Prismax/QA_PrismaX/McapData/0_mcap_分析.md"
+    output_md_path = "/Users/wanxin/PycharmProjects/WORK/Prismax/0_QA_PrismaX/knowledge_base/McapData_Study/0_mcap_分析.md"
     
     # 每个通道显示的消息样本数量
     samples_per_channel = 3

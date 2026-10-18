@@ -4,10 +4,10 @@
 
 本文说明如何使用 `prismax-0.1.3` Python SDK 上传 PrismaX episode 数据，并提供完整 E2E 测试用例，用于验证 SDK 的本地校验、上传、状态查询、resume、权限和异常处理能力。
 
-SDK 路径：
+历史本地源码包已经移除。如需复现该版本，请安装已发布的 `0.1.3` 包：
 
-```text
-QA_PrismaX/UPLOAD_DATA_APIKEY/prismax-0.1.3/
+```bash
+python -m pip install "prismax==0.1.3"
 ```
 
 适用对象：
@@ -41,11 +41,10 @@ QA_PrismaX/UPLOAD_DATA_APIKEY/prismax-0.1.3/
 
 ## 3.1 安装 SDK
 
-如果使用本地源码包测试，可以在 SDK 目录安装：
+安装历史 SDK 版本：
 
 ```bash
-cd /Users/wanxin/PycharmProjects/WORK/Prismax/QA_PrismaX/UPLOAD_DATA_APIKEY/prismax-0.1.3
-python -m pip install .
+python -m pip install "prismax==0.1.3"
 ```
 
 安装后确认 CLI 可用：
@@ -463,11 +462,10 @@ status / wait 查询处理结果
 6. 验证 operator/admin/普通用户 key 权限差异。
 7. 最后验证多 episode、additional videos、失败数据和移动/长耗时场景。
 
-本地 unit tests 可运行：
+历史源码测试目录已经移除，可执行 CLI smoke test 确认安装结果：
 
 ```bash
-cd /Users/wanxin/PycharmProjects/WORK/Prismax/QA_PrismaX/UPLOAD_DATA_APIKEY/prismax-0.1.3
-python -m unittest discover -s tests
+python -m prismax --help
 ```
 
 ---

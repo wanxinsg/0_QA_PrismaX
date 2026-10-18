@@ -1,7 +1,0 @@
-#!/bin/bash
-# PrismaX Daily Pull 补跑
-# 09:30–22:00 每 30 分钟检查一次；当天邮件已发出则跳过。
-# 系统设置 → 登录项与扩展 里，这项的名字是 prismax-daily-pull-catchup。
-set -u
-DIR="$(cd "$(dirname "$0")" && pwd)"
-exec "$DIR/run_pull_if_needed.sh"

@@ -1,5 +1,0 @@
-# Daily Work LLM（pip install -r requirements-daily-work.txt）
-# LLM_PROVIDER=cursor 时不需安装本文件也可跑流水线（仅存 MD + Cursor 提示）。
-# 否则：openai / anthropic 择一。
-openai>=1.40.0
-anthropic>=0.39.0

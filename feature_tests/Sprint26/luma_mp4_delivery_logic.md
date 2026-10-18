@@ -1,8 +1,8 @@
 # `luma_mp4_delivery` 功能与逻辑分析
 
-> 分析日期：2026-10-16（UTC+8）  
-> 分析目录：`0_QA_PrismaX/1_PRD/luma_mp4_delivery/`  
-> 快照来源：`fix/luma-serial-letter-guard` 分支 `7554497`，包含当时未提交的工作区修改  
+> 分析日期：2026-10-16（UTC+8）
+> 分析目录：`0_QA_PrismaX/product_requirements/luma_mp4_delivery/`
+> 快照来源：`fix/luma-serial-letter-guard` 分支 `7554497`，包含当时未提交的工作区修改
 > 注意：该目录是从主仓库抽出的代码副本和片段，不应直接修改或运行；`excerpts/` 不是完整 Python 模块。
 
 ---

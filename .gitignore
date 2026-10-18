@@ -38,3 +38,6 @@ venv/
 # Test report output
 **/test_report/allure-results/
 **/test_report/allure-report/
+
+# Local-only Fresh Cheese working copy
+Fresh_cheese/fresh-cheese.com guide/

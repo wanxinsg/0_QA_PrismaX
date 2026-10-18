@@ -1,5 +1,0 @@
-INFO:root:✅ Redis reachable: evolved-cougar-25634.upstash.io:6379/0
-INFO:root:✅ Test mode enabled: CORS allows all origins
-INFO:root:✅ Secrets loaded successfully:
-INFO:root:GeoIP reader initialized.
-INFO:root:✅ Initialising global SQLAlchemy Engine

@@ -1,7 +1,7 @@
 # SDK API Package Download 改动逻辑与 E2E 测试
 
 > 分析日期：2026-08-20
-> 仓库：`QA_RobotDataXTest/UPLOAD_DATA_APIKEY/sdk-vla-foundry`（分支 `testing`）
+> SDK 仓库：`sdk-vla-foundry/`（分支 `testing`）；测试脚本：`0_QA_TestFramework/sdk/robot_datax/`
 > Commit：`5e3ae4ef17cf73e834ce2867d9d3e6611b51db18` — `Add API package downloads`
 > 版本：`0.2.1` → `0.3.0b1`
 > 数据来源：SDK 源码、单元测试、README，及后端 `POST /v1/data/download-sessions` 实现对照；未执行远端拉取，未跑真实下载。
@@ -10,7 +10,7 @@
 
 ## README 参考：5. 下载 API Package
 
-> 翻译自 `sdk-vla-foundry` README 第 5 节 *Download An API Package*，供测试对照。原文位置：`QA_RobotDataXTest/sdk-vla-foundry/README.md`。
+> 翻译自 `sdk-vla-foundry` README 第 5 节 *Download An API Package*，供测试对照。原文位置：`sdk-vla-foundry/README.md`。
 
 创建一个前缀为 `pxa_` 的 Download API Key，并从 PrismaX App 中复制 Package ID。前缀为 `pxu_` 的 Upload Key **不能**用于下载数据。
 
