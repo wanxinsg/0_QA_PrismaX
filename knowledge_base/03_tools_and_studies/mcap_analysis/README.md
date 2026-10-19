@@ -29,7 +29,7 @@ Feature_CaseDesign/4_Mcap Data/
 ### 1. 安装依赖
 
 ```bash
-cd /Users/wanxin/PycharmProjects/WORK/Prismax/0_QA_PrismaX/knowledge_base/McapData_Study
+cd /Users/wanxin/PycharmProjects/WORK/Prismax/0_QA_PrismaX/knowledge_base/03_tools_and_studies/mcap_analysis
 pip install -r requirements.txt
 ```
 

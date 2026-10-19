@@ -261,7 +261,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='查看 MCAP 文件中的关节状态数据',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+        epilog=r"""
 示例:
   # 列出所有通道
   python view_joint_data.py ../QA_Feature_CaseDesign/4_Mcap\ Data/output-20260129/0.mcap --list
